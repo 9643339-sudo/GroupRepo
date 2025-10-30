@@ -3,4 +3,5 @@
 ### Group Members
 * Hunter Westover - 
 * Noah Norton - Art and game design
-* Alex Elkin - 
+* Alex Elkin -
+### Game License
