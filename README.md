@@ -4,4 +4,5 @@
 * Hunter Westover - 
 * Noah Norton - Art and game design
 * Alex Elkin -
+### How to run
 ### Game License
