@@ -1,3 +1,54 @@
+1. Game Design
+
+Define player mechanics: movement, jumping, combat.
+
+Design 3–5 levels (each a “layer” of the pit).
+
+Map out difficulty progression and boss fights.
+
+2. Coding
+
+Player controller (movement, jump, health).
+
+Enemy AI (patrol, attack).
+
+Level transitions.
+
+UI (health bar, menu, restart).
+
+Game manager (restart, win/lose logic).
+
+3. Art & Animation
+
+Design player cube (basic and “corrupted” forms).
+
+Create environment tiles: lava, rock, metal.
+
+Design enemies (cube beasts, bosses).
+
+Particle effects: fire, sparks, damage.
+
+4. Audio
+
+Ambient lava sounds.
+
+Jump, hit, and death effects.
+
+Background music for each layer.
+
+5. Testing & QA
+
+Playtest levels for difficulty and bugs.
+
+Collect feedback and fix major issues.
+
+6. Documentation & Presentation
+
+Game design document (GDD).
+
+Presentation slides or demo video.
+
+
 | Phase                             | Focus                           | Duration        | Description                                                       |
 | --------------------------------- | ------------------------------- | --------------- | ----------------------------------------------------------------- |
 | **1. Concept & Planning**         | Brainstorming, scope definition | 2 class periods | Finalize game concept, art style, core mechanics.                 |
