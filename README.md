@@ -19,9 +19,6 @@ Will you rise from the fire, or be consumed by it?
 
 [Timeline](https://github.com/9643339-sudo/GroupRepo/blob/main/Project%20Timeline)
 
-
-
-
 ### How to run
 ### Game License
 
