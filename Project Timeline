@@ -1,0 +1,9 @@
+| Phase                             | Focus                           | Duration        | Description                                                       |
+| --------------------------------- | ------------------------------- | --------------- | ----------------------------------------------------------------- |
+| **1. Concept & Planning**         | Brainstorming, scope definition | 2 class periods | Finalize game concept, art style, core mechanics.                 |
+| **2. Core Systems Development**   | Movement, physics, camera       | 4 class periods | Implement player control, gravity, collisions, and camera follow. |
+| **3. Level & Environment Design** | Visual and gameplay layout      | 3 class periods | Design and build initial levels, traps, and obstacles.            |
+| **4. Combat & Enemies**           | AI and combat mechanics         | 3 class periods | Create cube-enemies, bosses, and health system.                   |
+| **5. Art & Sound Integration**    | Final art, animation, and audio | 2 class periods | Add art, lighting, particle effects, and sound.                   |
+| **6. Testing & Polish**           | Debugging, tuning, and menu     | 2 class periods | QA, fix bugs, and refine difficulty and pacing.                   |
+| **7. Presentation & Reflection**  | Demo day prep                   | 1 class period  | Final build, trailer, or in-class presentation.                   |
