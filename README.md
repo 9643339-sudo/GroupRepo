@@ -7,8 +7,13 @@ Will you rise from the fire, or be consumed by it?
 * Hunter Westover -
 * Noah Norton - 
 * Alex Elkin -
+
+### Start Screen
+![TPOD](https://github.com/9643339-sudo/GroupRepo/blob/main/images/readme.md/TPOD%20Menu%20screen.png)
+
+### Game Over
+
 ### How to run
 ### Game License
 
-![TPOD](https://github.com/9643339-sudo/GroupRepo/blob/main/images/readme.md/TPOD%20Menu%20screen.png)
 
