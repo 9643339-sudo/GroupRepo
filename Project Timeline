@@ -1,8 +1,6 @@
 1. Game Design
-
-Define player mechanics: movement, jumping, combat.
-
-Design 3–5 levels (each a “layer” of the pit).
+* Define player mechanics: movement, jumping, combat.
+* Design 3–5 levels (each a “layer” of the pit).
 
 Map out difficulty progression and boss fights.
 
@@ -58,3 +56,24 @@ Presentation slides or demo video.
 | **5. Art & Sound Integration**    | Final art, animation, and audio | 2 class periods | Add art, lighting, particle effects, and sound.                   |
 | **6. Testing & Polish**           | Debugging, tuning, and menu     | 2 class periods | QA, fix bugs, and refine difficulty and pacing.                   |
 | **7. Presentation & Reflection**  | Demo day prep                   | 1 class period  | Final build, trailer, or in-class presentation.                   |
+
+
+| Class # | Milestone            | Deliverable               |
+| ------- | -------------------- | ------------------------- |
+| 1       | Concept brainstorm   | Game theme, moodboard     |
+| 2       | Design finalized     | GDD v1 complete           |
+| 3–4     | Core player movement | Prototype playable        |
+| 5–6     | Level blockouts done | Layer 1 testable          |
+| 7–9     | Enemy + boss logic   | Combat functional         |
+| 10–11   | Art integration      | Player + level art        |
+| 12–13   | Audio + polish       | Basic sound/music in game |
+| 14–15   | Playtesting          | Bugs tracked & fixed      |
+| 16      | Final polish         | Final build complete      |
+| 17      | Demo day             | Presentation & reflection |
+
+
+Playable Pit of Despair build (3+ levels)
+
+Game trailer or presentation
+
+Documentation (roles, design notes, lessons learned)
