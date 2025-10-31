@@ -14,9 +14,11 @@ Will you rise from the fire, or be consumed by it?
 ### Game Over
 ![TPOD](https://github.com/9643339-sudo/GroupRepo/blob/main/images/readme.md/GameOver.png)
 
+[Gameplay](https://github.com/9643339-sudo/GroupRepo/blob/main/images/New%20Piskel.png)
+
 [Timeline](https://github.com/9643339-sudo/GroupRepo/blob/main/Project%20Timeline)
 
-[Gameplay](https://github.com/9643339-sudo/GroupRepo/blob/main/images/New%20Piskel.png)
+
 
 
 ### How to run
