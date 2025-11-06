@@ -1,4 +1,4 @@
- class ReilStar {
+class ReilStar {
     float x, y, speed;
 
     ReilStar(float x, float y) {
