@@ -34,3 +34,12 @@ class Reil {
   void strike(float x, float y) {
     swords.add(new Sword(x, y));
   }
+
+  void checkDamage(Player p) {
+    for (Sword sw : swords) {
+      if (!sw.hit && p.isHit(sw.x, sw.y)) {
+        p.takeDamage(10);
+        sw.hit = true;
+      }
+    }
+  }
