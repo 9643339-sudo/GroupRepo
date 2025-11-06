@@ -1,6 +1,10 @@
 class Lava{
 //member variables
-int 
+int x, y;
+boolean ifIn;
+PImage Lava;
 //constructor
+x =
+y =
 //member methods
 }
