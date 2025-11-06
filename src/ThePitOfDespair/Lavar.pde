@@ -1,5 +1,5 @@
 class Lavar {
-int x, y, health
+int x, y, w, h health
 
 Lavar() {
 health = 500;
