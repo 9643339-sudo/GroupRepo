@@ -13,7 +13,7 @@ h =
 speed = 
 //member methods
 void display(){}
-voide move(){}
+void move(){}
 boolean intersect(){}
 
 }
