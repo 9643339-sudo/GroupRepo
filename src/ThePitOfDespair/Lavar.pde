@@ -24,8 +24,7 @@ class Lavar {
   }
   
   void update() {
-    // You can make the boss move or animate here
-    // Example: simple horizontal movement
+
     x += sin(frameCount * 0.05) * 2;
     
     // Count down attack timer
