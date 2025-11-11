@@ -21,7 +21,7 @@ class Lavar {
   
   void update() {
 
-    x += sin(frameCount * 0.05) * 2;
+   
     
     // Count down attack timer
     if (attackCooldown > 0) {
