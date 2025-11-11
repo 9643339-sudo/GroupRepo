@@ -17,6 +17,11 @@ Will you rise from the fire, or be consumed by it?
 ### Gameplay
 ![Gameplay](https://github.com/9643339-sudo/GroupRepo/blob/main/images/New%20Piskel.png)
 
+<img width="785" height="586" alt="Screenshot 2025-11-11 at 8 45 40 AM" src="https://github.com/user-attachments/assets/c3a6dc23-0c81-4765-8e57-7301e19d5355" />
+
+<img width="785" height="580" alt="Screenshot 2025-11-11 at 8 46 14 AM" src="https://github.com/user-attachments/assets/a381b6f6-6bbc-44e9-bd80-d7af384c1e88" />
+
+
 [Timeline](https://github.com/9643339-sudo/GroupRepo/blob/main/Project%20Timeline)
 
 ### How to run
