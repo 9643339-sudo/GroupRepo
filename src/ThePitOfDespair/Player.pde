@@ -11,15 +11,16 @@ class Player {
     health = 100;
   }
 
-  void update() {
-    //WASD movement
-    if (keyPressed) {
-      if (key == 'a' || key == 'A') { x -= speed; facing = "left"; }
-      if (key == 'd' || key == 'D') { x += speed; facing = "right"; }
-      if (key == 'w' || key == 'W') { y -= speed; facing = "up"; }
-      if (key == 's' || key == 'S') { y += speed; facing = "down"; }
-    }
-
+  void keyPressed() {
+  if (key == 'w' || key == 'W') {
+    y-= ms;
+  } else if (key == 'd' || key == 'D') {
+    x+= ms;
+  } else if (key == 'a' || key == 'A') {
+    x-= ms;
+  } else if (key == 's' || key == 'S') {
+    y+= ms;
+  }
 
   void display() {
     fill(0, 0, 255);
