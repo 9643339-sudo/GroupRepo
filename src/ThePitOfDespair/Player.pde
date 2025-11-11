@@ -12,7 +12,7 @@ class Player {
   }
 
   void update() {
-    // Normal, instant WASD movement
+    //WASD movement
     if (keyPressed) {
       if (key == 'a' || key == 'A') { x -= speed; facing = "left"; }
       if (key == 'd' || key == 'D') { x += speed; facing = "right"; }
