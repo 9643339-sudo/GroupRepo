@@ -20,8 +20,6 @@ class Player {
       if (key == 's' || key == 'S') { y += speed; facing = "down"; }
     }
 
-    x = constrain(x, 0, width - w);
-    y = constrain(y, 0, height - h);
 
   void display() {
     fill(0, 0, 255);
