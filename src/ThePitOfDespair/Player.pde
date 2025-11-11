@@ -3,7 +3,7 @@ class Player {
   float x, y;
   int w = 40, h = 40;
   int health;
-  float speed = 4; // instant speed, no acceleration
+  float speed = 4; //
 
   Player(float startX, float startY) {
     x = startX;
