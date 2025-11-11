@@ -16,11 +16,7 @@ class Lavar {
     fill(255, 0, 0);
     rect(x, y, w, h);
     
-    // health bar
-    fill(0);
-    rect(x, y - 10, w, 5);
-    fill(0, 255, 0);
-    rect(x, y - 10, map(health, 0, 500, 0, w), 5);
+
   }
   
   void update() {
@@ -35,8 +31,7 @@ class Lavar {
   
   void attack(Player player) {
     if (attackCooldown == 0) {
-      // Example: boss shoots a projectile or damages the player
-      println("Lavar attacks!");
+
       player.health -= 10;
       attackCooldown = 60; // 1 second cooldown at 60 FPS
     }
