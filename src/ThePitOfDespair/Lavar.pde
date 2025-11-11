@@ -33,7 +33,7 @@ class Lavar {
     if (attackCooldown == 0) {
 
       player.health -= 10;
-      attackCooldown = 60; // 1 second cooldown at 60 FPS
+      attackCooldown = 60; 
     }
   }
   
