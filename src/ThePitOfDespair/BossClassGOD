@@ -1,0 +1,120 @@
+class Boss {
+  float x, y;
+  float size = 120;
+  float angle = 0;
+  float floatRadius = 100;
+  float floatSpeed = 0.02;
+  
+  int health = 400, maxHealth = 400;
+  boolean alive = true;
+  boolean phaseTwo = false;  // ⚡ phase control
+  
+  int shootTimer = 0;
+  int shootInterval = 60;
+  int chargeTimer = 0;
+  int chargeCooldown = 200;
+  int beamTimer = 0;
+  int beamInterval = 400;
+  int hBeamTimer = 0;
+  int hBeamInterval = 500;
+  
+  boolean charging = false;
+  PVector chargeDir;
+  PImage sprite;
+  
+  Boss(float x, float y, PImage img) {
+    this.x = x;
+    this.y = y;
+    sprite = img;
+  }
+  
+  void update(Player p) {
+    if (!alive) return;
+    
+    // Check for phase two trigger
+    if (!phaseTwo && health <= maxHealth / 2) {
+      phaseTwo = true;
+      // Power up — faster, angrier
+      floatSpeed *= 2;
+      shootInterval = 30;
+      chargeCooldown = 120;
+      beamInterval = 250;
+      hBeamInterval = 300;
+    }
+    
+    angle += floatSpeed;
+    y = 150 + sin(angle) * floatRadius * 0.3;
+    x += sin(angle * 0.5) * 1.2;
+    
+    shootTimer++;
+    if (shootTimer > shootInterval) {
+      shootTimer = 0;
+      stars.add(new Star(x, y, p.x + p.size/2, p.y + p.size/2));
+      if (phaseTwo && random(1) < 0.5) {
+        stars.add(new Star(x, y, p.x + random(-40, 40), p.y + random(-40, 40)));
+      }
+    }
+    
+    chargeTimer++;
+    if (chargeTimer > chargeCooldown) {
+      chargeTimer = 0;
+      charging = true;
+      chargeDir = new PVector(p.x - x, p.y - y);
+      chargeDir.normalize();
+      chargeDir.mult(phaseTwo ? 8 : 6);
+    }
+    if (charging) {
+      x += chargeDir.x;
+      y += chargeDir.y;
+      if (x < 0 || x > width || y < 0 || y > height) charging = false;
+    }
+    
+    beamTimer++;
+    if (beamTimer > beamInterval) {
+      beamTimer = 0;
+      spawnVerticalBeams();
+    }
+    
+    hBeamTimer++;
+    if (hBeamTimer > hBeamInterval) {
+      hBeamTimer = 0;
+      spawnHorizontalBeams();
+    }
+    
+    if (dist(x, y, p.x + p.size/2, p.y + p.size/2) < (size/2 + p.size/2))
+      p.takeDamage(20);
+  }
+  
+  void spawnVerticalBeams() {
+    int beamCount = phaseTwo ? 8 : 5;
+    for (int i = 0; i < beamCount; i++) {
+      float bx = random(80, width - 80);
+      beams.add(new Beam(bx));
+    }
+  }
+  
+  void spawnHorizontalBeams() {
+    int beamCount = phaseTwo ? 8 : 5;
+    for (int i = 0; i < beamCount; i++) {
+      float by = random(80, height - 80);
+      hBeams.add(new HBeam(by));
+    }
+  }
+  
+  void display() {
+    if (!alive) return;
+    imageMode(CENTER);
+    if (phaseTwo) {
+      // Red glow for phase two
+      noStroke();
+      fill(255, 50, 50, 80);
+      ellipse(x, y, size * 1.6, size * 1.6);
+    }
+    image(sprite, x, y, size, size);
+  }
+  
+  void takeDamage(int dmg) {
+    health -= dmg;
+    if (health <= 0) alive = false;
+  }
+}
