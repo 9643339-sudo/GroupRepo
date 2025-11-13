@@ -52,6 +52,14 @@ class ReilBoss {
         swords.add(new LightSword(random(width)));
         swords.add(new LightSword(random(width)));
         swords.add(new LightSword(random(width)));
+       swords.add(new LightSword(random(width)));
+        swords.add(new LightSword(random(width)));
+        swords.add(new LightSword(random(width)));
+        swords.add(new LightSword(random(width)));
+        swords.add(new LightSword(random(width)));
+        swords.add(new LightSword(random(width)));
+        swords.add(new LightSword(random(width)));
+        swords.add(new LightSword(random(width)));
       }
     }
   }
