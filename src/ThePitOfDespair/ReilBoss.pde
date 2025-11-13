@@ -50,6 +50,8 @@ class ReilBoss {
       if (frameCount % 180 == 0) {
         swords.add(new LightSword(random(width)));
         swords.add(new LightSword(random(width)));
+        swords.add(new LightSword(random(width)));
+        swords.add(new LightSword(random(width)));
       }
     }
   }
