@@ -86,9 +86,8 @@ void draw() {
   }
 }
 
-// ===================================================
+
 // INPUT
-// ===================================================
 void keyPressed() {
   if (key == ' ') {
     bullets.add(new Bullet(player.x, player.y - 20));
@@ -99,9 +98,8 @@ void keyPressed() {
   }
 }
 
-// ===================================================
+
 // BACKGROUND STARS
-// ===================================================
 void drawBackgroundStars() {
   noStroke();
   fill(255, 255, 180, 80);
@@ -112,9 +110,8 @@ void drawBackgroundStars() {
   }
 }
 
-// ===================================================
+
 // GAME OVER SCREEN
-// ===================================================
 void displayGameOver() {
   textAlign(CENTER, CENTER);
   fill(255);
