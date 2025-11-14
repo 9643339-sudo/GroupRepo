@@ -17,7 +17,7 @@ Will you rise from the fire, or be consumed by it?
 ### Gameplay
 ![Gameplay](https://github.com/9643339-sudo/GroupRepo/blob/main/images/New%20Piskel.png)
 
-<img width="785" height="586" alt="Screenshot 2025-11-11 at 8 45 40 AM" src="https://github.com/user-attachments/assets/c3a6dc23-0c81-4765-8e57-7301e19d5355" />
+<img width="482" height="484" alt="Screenshot 2025-11-14 at 9 14 33 AM" src="https://github.com/user-attachments/assets/bd1b1029-88d8-49bc-8b5d-0720811e6b7a" />
 
 <img width="785" height="580" alt="Screenshot 2025-11-11 at 8 46 14 AM" src="https://github.com/user-attachments/assets/a381b6f6-6bbc-44e9-bd80-d7af384c1e88" />
 
@@ -25,8 +25,7 @@ Will you rise from the fire, or be consumed by it?
 [Timeline](https://github.com/9643339-sudo/GroupRepo/blob/main/Project%20Timeline)
 
 ### How to run
-[God of despair demo](<img width="482" height="484" alt="Screenshot 2025-11-14 at 9 14 33 AM" src="https://github.com/user-attachments/assets/e2d5c91f-da08-4b0e-8106-69997b846448" />)
-
+[God of despair demo](https://github.com/user-attachments/files/23551461/Godofdespair_pde.zip)
 
 
 [Reil Demo](https://github.com/user-attachments/files/23481708/ReilBossFightDemo.zip)
