@@ -1,55 +1,67 @@
+// -------------------------------------------
+// GLOBALS
+// -------------------------------------------
 char screen = 's';   // s = start, m = menu, t = settings, p = play, u = pause, g = game over, a = app stats
 Button btnStart, btnMenu, btnSettings, btnBack;
 
+PImage tpodMenuScreen; // <-- Added image variable
 
+// -------------------------------------------
 void setup() {
   size(600, 400);
-  
-  btnStart    = new Button("Start Game",   220, 150, 160, 50);
-btnMenu    = new Button("Menu",   220, 300, 160, 50);
-btnSettings    = new Button("Settings",   220, 450, 160, 50);
+
+  // Load background image
+  tpodMenuScreen = loadImage("TPOD_MenuScreen.png");  // Make sure the image is in the "data" folder
+
+  // Example buttons for practice starter
+  btnStart = new Button("Play", 220, 150, 160, 50);
+  btnSettings = new Button("Settings", 220, 300, 160, 50);
 }
 
-
+// -------------------------------------------
 void draw() {
-  background(230);
   switch(screen) {
-    case 's':
-    background(0);
+    
+  case 's': // Start screen
+    tpodMenuScreen = loadImage("TPODMENUSCREEN.png");
+
     btnStart.display();
-  btnStart.clicked();
-  btnMenu.display();
-  btnMenu.clicked();
-  btnSettings.display();
-  btnSettings.clicked();
-  
-    // startScreen();
-    case 'p':
+    btnSettings.display();
+    break;
+
+  case 'p': // Play screen example
+    drawPlay();
+    break;
+
+  case 't': // Settings
+    drawSettings();
+    break;
   }
 }
-  
-  
 
-  
-
-
-
+// -------------------------------------------
+// MOUSE CLICK HANDLER
+// -------------------------------------------
 void mousePressed() {
   switch(screen) {
-    case 's':
-    if(btnStart.clicked()){
+  case 's':
+    if (btnStart.clicked()) {
       screen = 'p';
     }
+    if (btnSettings.clicked()) {
+      screen = 't';
+    }
+    break;
   }
-  }
+}
 
-
+// -------------------------------------------
+// SCREEN DRAW METHODS
+// -------------------------------------------
 void drawStart() {
-  background(100, 160, 200);
-  textAlign(CENTER);
-  textSize(32);
-  text("START SCREEN", width/2, 50);
+  image(tpodMenuScreen, 0, 0, width, height);
   btnStart.display();
+  btnSettings.display();
 }
 
 void drawMenu() {
@@ -65,7 +77,6 @@ void drawSettings() {
   text("SETTINGS", width/2, 50);
   btnSettings.display();
 }
-
 
 void drawPlay() {
   background(255);
@@ -86,3 +97,4 @@ void drawStats() {
   background(255);
   text("STATS SCREEN (fill this in)", 200, 200);
 }
+
