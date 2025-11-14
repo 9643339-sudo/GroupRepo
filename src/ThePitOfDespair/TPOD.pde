@@ -11,7 +11,7 @@ void setup() {
   size(600, 400);
 
   // Load background image
-  tpodMenuScreen = loadImage("TPOD_MenuScreen.png");  // Make sure the image is in the "data" folder
+  tpodMenuScreen = loadImage("TPOD_MenuScreen.png");  
 
   // Example buttons for practice starter
   btnStart = new Button("Play", 220, 150, 160, 50);
