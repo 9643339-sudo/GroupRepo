@@ -25,7 +25,8 @@ Will you rise from the fire, or be consumed by it?
 [Timeline](https://github.com/9643339-sudo/GroupRepo/blob/main/Project%20Timeline)
 
 ### How to run
-[God of despair demo](<img width="482" height="484" alt="Screenshot 2025-11-14 at 9 14 33 AM" src="https://github.com/user-attachments/assets/ae9e7062-3723-4e71-9cbd-db08471c072f" />)
+[God of despair demo](<img width="482" height="484" alt="Screenshot 2025-11-14 at 9 14 33 AM" src="https://github.com/user-attachments/assets/e2d5c91f-da08-4b0e-8106-69997b846448" />)
+
 
 
 [Reil Demo](https://github.com/user-attachments/files/23481708/ReilBossFightDemo.zip)
