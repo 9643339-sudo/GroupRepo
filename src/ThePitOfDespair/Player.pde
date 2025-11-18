@@ -1,33 +1,47 @@
-
 class Player {
   float x, y;
-  int w = 40, h = 40;
-  int health;
-  float speed = 4; //
-
-  Player(float startX, float startY) {
-    x = startX;
-    y = startY;
-    health = 100;
+  float size = 40;
+  float speed = 4;
+  int health = 100, maxHealth = 100;
+  boolean alive = true;
+  boolean up, down, left, right;
+  
+  Player(float x, float y) { this.x = x; this.y = y; }
+  
+  void update() {
+    if (!alive) return;
+    if (up) y -= speed;
+    if (down) y += speed;
+    if (left) x -= speed;
+    if (right) x += speed;
+    x = constrain(x, 0, width - size);
+    y = constrain(y, 0, height - size);
   }
-
-  void keyPressed() {
-  if (key == 'w' || key == 'W') {
-    y-= ms;
-  } else if (key == 'd' || key == 'D') {
-    x+= ms;
-  } else if (key == 'a' || key == 'A') {
-    x-= ms;
-  } else if (key == 's' || key == 'S') {
-    y+= ms;
-  }
-
+  
   void display() {
-    fill(0, 0, 255);
-    rect(x, y, w, h);
-
-
+    fill(alive ? color(0, 200, 255) : color(100));
+    noStroke();
+    rect(x, y, size, size);
+  }
+  
+  void keyPressed(char k) {
+    if (!alive) return;
+    if (k == 'w' || k == 'W') up = true;
+    if (k == 's' || k == 'S') down = true;
+    if (k == 'a' || k == 'A') left = true;
+    if (k == 'd' || k == 'D') right = true;
+    if (k == ' ') bullets.add(new Bullet(x + size/2, y));
+  }
+  
+  void keyReleased(char k) {
+    if (k == 'w' || k == 'W') up = false;
+    if (k == 's' || k == 'S') down = false;
+    if (k == 'a' || k == 'A') left = false;
+    if (k == 'd' || k == 'D') right = false;
+  }
+  
   void takeDamage(int dmg) {
     health -= dmg;
+    if (health <= 0) alive = false;
   }
 }
