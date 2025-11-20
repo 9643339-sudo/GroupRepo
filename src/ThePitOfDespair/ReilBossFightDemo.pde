@@ -7,10 +7,21 @@ ArrayList<Bullet> bullets;
 boolean gameOver = false;
 boolean playerWon = false;
 
+PImage reil1;
+PImage reil2;
+
 void setup() {
   size(800, 600);
+
+  // Load boss images
+  reil1 = loadImage("reil.png");
+  reil2 = loadImage("reil2.png");
+
   player = new Player(width/2, height - 60);
-  reil = new ReilBoss(width/2, 100);
+
+  // Pass images into ReilBoss
+  reil = new ReilBoss(width/2, 100, reil1, reil2);
+
   stars = new ArrayList<Star>();
   swords = new ArrayList<LightSword>();
   bullets = new ArrayList<Bullet>();
@@ -19,7 +30,7 @@ void setup() {
 void draw() {
   background(10, 10, 25);
   drawBackgroundStars();
-  
+
   if (!gameOver) {
     reil.update();
     reil.display();
@@ -38,27 +49,25 @@ void draw() {
       }
     }
 
-    // Update stars
+    // Stars
     for (int i = stars.size()-1; i >= 0; i--) {
       Star s = stars.get(i);
       s.update();
       s.display();
       if (s.hits(player)) {
-        player.damage(10);
+        player.damage(5);
         stars.remove(i);
       } else if (s.offscreen()) {
         stars.remove(i);
       }
     }
 
-    // Update swords
+    // Swords
     for (int i = swords.size()-1; i >= 0; i--) {
       LightSword l = swords.get(i);
       l.update();
       l.display();
-      if (l.hits(player)) {
-        player.damage(25);
-      }
+      if (l.hits(player)) player.damage(25);
       if (l.finished()) swords.remove(i);
     }
 
@@ -66,13 +75,11 @@ void draw() {
     player.update();
     player.display();
 
-    // UI
     fill(255);
     textSize(16);
     text("Player HP: " + player.hp, 20, 30);
     text("Reil HP: " + reil.hp, width - 150, 30);
-    
-    // Check end conditions
+
     if (player.hp <= 0) {
       gameOver = true;
       playerWon = false;
@@ -86,20 +93,16 @@ void draw() {
   }
 }
 
-
-// INPUT
 void keyPressed() {
   if (key == ' ') {
     bullets.add(new Bullet(player.x, player.y - 20));
   }
   if (gameOver && key == 'r') {
-    setup(); // restart
+    setup();
     gameOver = false;
   }
 }
 
-
-// BACKGROUND STARS
 void drawBackgroundStars() {
   noStroke();
   fill(255, 255, 180, 80);
@@ -110,8 +113,6 @@ void drawBackgroundStars() {
   }
 }
 
-
-// GAME OVER SCREEN
 void displayGameOver() {
   textAlign(CENTER, CENTER);
   fill(255);
