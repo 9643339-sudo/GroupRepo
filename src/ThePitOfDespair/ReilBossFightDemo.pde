@@ -9,6 +9,7 @@ boolean playerWon = false;
 
 PImage reil1;
 PImage reil2;
+PImage reil3;   
 
 void setup() {
   size(800, 600);
@@ -16,11 +17,12 @@ void setup() {
   // Load boss images
   reil1 = loadImage("reil.png");
   reil2 = loadImage("reil2.png");
+  reil3 = loadImage("reil3.png");   
 
   player = new Player(width/2, height - 60);
 
-  // Pass images into ReilBoss
-  reil = new ReilBoss(width/2, 100, reil1, reil2);
+  // Pass all three images (IMPORTANT)
+  reil = new ReilBoss(width/2, 100, reil1, reil2, reil3);
 
   stars = new ArrayList<Star>();
   swords = new ArrayList<LightSword>();
@@ -32,15 +34,18 @@ void draw() {
   drawBackgroundStars();
 
   if (!gameOver) {
+
+    // Boss logic
     reil.update();
     reil.display();
     reil.attack(stars, swords);
 
-    // Update bullets
+    // Bullets
     for (int i = bullets.size()-1; i >= 0; i--) {
       Bullet b = bullets.get(i);
       b.update();
       b.display();
+
       if (b.offscreen()) {
         bullets.remove(i);
       } else if (b.hits(reil)) {
@@ -54,6 +59,7 @@ void draw() {
       Star s = stars.get(i);
       s.update();
       s.display();
+
       if (s.hits(player)) {
         player.damage(5);
         stars.remove(i);
@@ -67,27 +73,31 @@ void draw() {
       LightSword l = swords.get(i);
       l.update();
       l.display();
-      if (l.hits(player)) player.damage(25);
+
+      if (l.hits(player)) player.damage(1);
       if (l.finished()) swords.remove(i);
     }
 
-    // Player
+    // Player updates
     player.update();
     player.display();
 
+    // UI text
     fill(255);
     textSize(16);
-    text("Player HP: " + player.hp, 20, 30);
-    text("Reil HP: " + reil.hp, width - 150, 30);
+    text("Player HP: " + player.health, 20, 30);
+    text("Reil HP: " + reil.health, width - 150, 30);
 
-    if (player.hp <= 0) {
+    // Check defeat/win
+    if (player.health <= 0) {
       gameOver = true;
       playerWon = false;
     }
-    if (reil.hp <= 0) {
+    if (reil.health <= 0) {
       gameOver = true;
       playerWon = true;
     }
+
   } else {
     displayGameOver();
   }
@@ -117,11 +127,13 @@ void displayGameOver() {
   textAlign(CENTER, CENTER);
   fill(255);
   textSize(36);
+
   if (playerWon) {
     text("✨ You defeated Reil! ✨", width/2, height/2);
   } else {
     text("💀 You were defeated...", width/2, height/2);
   }
+
   textSize(20);
   text("Press R to restart", width/2, height/2 + 40);
 }
