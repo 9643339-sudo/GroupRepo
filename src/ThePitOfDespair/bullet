@@ -1,4 +1,3 @@
-// ==== Bullet ====
 class Bullet {
   PVector pos, vel;
   float r = 8;
