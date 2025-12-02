@@ -1,119 +1,107 @@
-Player player;
-Boss boss;
+class Boss {
+  float x, y;
+  float size = 120;
+  float angle = 0;
+  float floatRadius = 100;
+  float floatSpeed = 0.02;
 
-ArrayList<Bullet> bullets;
-ArrayList<Meteor> meteors;
-ArrayList<RainMeteor> rainMeteors;
+  int health = 250, maxHealth = 250;
+  boolean alive = true;
 
-void setup() {
-  size(800, 600);
-  player = new Player(width/2, height - 80);
-  boss = new Boss(width/2, 150);
+  // NORMAL SHOOTING
+  int shootTimer = 0;
+  int shootInterval = 70;
 
-  bullets = new ArrayList<Bullet>();
-  meteors = new ArrayList<Meteor>();
-  rainMeteors = new ArrayList<RainMeteor>();
-}
+  // METEOR RAIN ATTACK
+  int rainTimer = 0;
+  int rainInterval = 500;
+  boolean raining = false;
+  int rainTick = 0;
+  int rainDuration = 450;
+  int rainSpawnRate = 9;
+  int maxRainMeteors = 15;
+  int rainMeteorsSpawned = 0;
 
-void draw() {
-  background(20, 20, 30);
+  // LAVA WAVE ATTACK
+  int lavaTimer = 0;
+  int lavaInterval = 350;
+  ArrayList<LavaWave> lavaWaves;
 
-  player.update();
-  boss.update(player);
+  Boss(float x_, float y_) {
+    x = x_;
+    y = y_;
+    lavaWaves = new ArrayList<LavaWave>();
+  }
 
-  // ==== NORMAL METEORS ====
-  for (int i = meteors.size()-1; i >= 0; i--) {
-    Meteor m = meteors.get(i);
-    m.update();
-    m.display();
+  void update(Player p) {
+    if (!alive) return;
 
-    if (m.hits(player)) {
-      player.takeDamage(5);
-      meteors.remove(i);
-      continue;
+    // ==== BOSS MOVEMENT ====
+    angle += floatSpeed;
+    y = 150 + sin(angle) * floatRadius * 0.3;
+    x += sin(angle * 0.5) * 1.2;
+
+    // ==== NORMAL SHOOTING ====
+    shootTimer++;
+    if (shootTimer > shootInterval) {
+      shootTimer = 0;
+      meteors.add(new Meteor(x, y, p.x + p.size/2, p.y + p.size/2));
     }
 
-    if (m.offscreen()) {
-      meteors.remove(i);
+    // ==== METEOR RAIN ====
+    rainTimer++;
+    if (!raining && rainTimer > rainInterval) {
+      raining = true;
+      rainTimer = 0;
+      rainTick = 0;
+      rainMeteorsSpawned = 0;
+    }
+
+    if (raining) {
+      rainTick++;
+      if (rainTick % rainSpawnRate == 0 &&
+          rainMeteorsSpawned < maxRainMeteors) {
+
+        float sx = random(width);
+        float sy = -40;
+        float tx = p.x + p.size/2;
+        float ty = p.y + p.size/2;
+
+        rainMeteors.add(new RainMeteor(sx, sy, tx, ty));
+        rainMeteorsSpawned++;
+      }
+      if (rainTick > rainDuration) raining = false;
+    }
+
+    // ==== LAVA WAVE (HORIZONTAL ONLY) ====
+    lavaTimer++;
+    if (lavaTimer > lavaInterval) {
+      lavaTimer = 0;
+
+      // Random Y spawn lanes
+      float sy;
+      int lane = int(random(3));
+      if (lane == 0) sy = 100;
+      else if (lane == 1) sy = height/2;
+      else sy = height - 150;
+
+      float sx;
+      if (p.x < width / 2) sx = -200;
+      else sx = width + 200;
+
+      lavaWaves.add(new LavaWave(sx, sy, true));
     }
   }
 
-  // ==== RAIN METEORS ====
-  for (int i = rainMeteors.size()-1; i >= 0; i--) {
-    RainMeteor rm = rainMeteors.get(i);
-    rm.update();
-    rm.display();
-
-    if (rm.hits(player)) {
-      player.takeDamage(8);
-    }
-
-    if (rm.offscreen() || rm.damaged) {
-      rainMeteors.remove(i);
-    }
+  void display() {
+    if (!alive) return;
+    fill(255, 0, 0);
+    noStroke();
+    ellipse(x, y, size, size);
   }
 
-  // ==== LAVA WAVES ====
-  for (int i = boss.lavaWaves.size()-1; i >= 0; i--) {
-    LavaWave lw = boss.lavaWaves.get(i);
-    lw.update();
-    lw.display();
-
-    if (lw.hits(player)) {
-      player.takeDamage(10);
-    }
-
-    if (lw.offscreen() || lw.destroyed) {
-      boss.lavaWaves.remove(i);
-    }
+  void takeDamage(int dmg) {
+    health -= dmg;
+    if (health <= 0) alive = false;
   }
-
-  // ==== PLAYER BULLETS ====
-  for (int i = bullets.size()-1; i >= 0; i--) {
-    Bullet b = bullets.get(i);
-    b.update();
-    b.display();
-
-    if (b.offscreen()) {
-      bullets.remove(i);
-    } else if (boss.alive && b.hits(boss)) {
-      boss.takeDamage(2);
-      bullets.remove(i);
-    }
-  }
-
-  player.display();
-  boss.display();
-  drawHealthBars();
-
-  if (!player.alive) {
-    fill(255, 50, 50);
-    textAlign(CENTER, CENTER);
-    textSize(48);
-    text("YOU DIED", width/2, height/2);
-    noLoop();
-  }
-
-  if (!boss.alive) {
-    fill(255, 255, 100);
-    textAlign(CENTER, CENTER);
-    textSize(48);
-    text("YOU WIN!", width/2, height/2);
-    noLoop();
-  }
-}
-
-void keyPressed() { player.keyPressed(key); }
-void keyReleased() { player.keyReleased(key); }
-
-void drawHealthBars() {
-  fill(0, 200, 255);
-  rect(20, height - 30, map(player.health, 0, player.maxHealth, 0, 200), 15);
-  noFill(); stroke(255); rect(20, height - 30, 200, 15);
-  noStroke(); fill(255); text("PLAYER", 20, height - 40);
-
-  fill(255, 50, 50);
-  rect(width - 220, 20, map(boss.health, 0, boss.maxHealth, 0, 200), 15);
-  noFill(); stroke(255); rect(width - 220, 20, 200, 15);
-  noStroke(); fill(255); text("Lavar", width - 80, 15);
 }
