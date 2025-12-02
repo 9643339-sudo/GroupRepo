@@ -1,78 +1,119 @@
-class Boss {
-  float x, y;
-  float size = 120;
-  float angle = 0;
-  float floatRadius = 100;
-  float floatSpeed = 0.02;
-  
-  int health = 400, maxHealth = 400;
-  boolean alive = true;
-  
-  int shootTimer = 0;
-  int shootInterval = 60;
-  int lavaTimer = 0;
-  int lavaInterval = 300;
-  int hLavaTimer = 0;
-  int hLavaInterval = 500;
-  
-  Boss(float x_, float y_) {
-    x = x_;
-    y = y_;
-  }
-  
-  void update(Player p) {
-    if (!alive) return;
-    angle += floatSpeed;
-    y = 150 + sin(angle) * floatRadius * 0.3;
-    x += sin(angle * 0.5) * 1.2;
-    
-    shootTimer++;
-    if (shootTimer > shootInterval) {
-      shootTimer = 0;
-      meteors.add(new Meteor(x, y, p.x + p.size/2, p.y + p.size/2));
+Player player;
+Boss boss;
+
+ArrayList<Bullet> bullets;
+ArrayList<Meteor> meteors;
+ArrayList<RainMeteor> rainMeteors;
+
+void setup() {
+  size(800, 600);
+  player = new Player(width/2, height - 80);
+  boss = new Boss(width/2, 150);
+
+  bullets = new ArrayList<Bullet>();
+  meteors = new ArrayList<Meteor>();
+  rainMeteors = new ArrayList<RainMeteor>();
+}
+
+void draw() {
+  background(20, 20, 30);
+
+  player.update();
+  boss.update(player);
+
+  // ==== NORMAL METEORS ====
+  for (int i = meteors.size()-1; i >= 0; i--) {
+    Meteor m = meteors.get(i);
+    m.update();
+    m.display();
+
+    if (m.hits(player)) {
+      player.takeDamage(5);
+      meteors.remove(i);
+      continue;
     }
-    
-    lavaTimer++;
-    if (lavaTimer > lavaInterval) {
-      lavaTimer = 0;
-      spawnVerticalLavas();
-    }
-    
-    hLavaTimer++;
-    if (hLavaTimer > hLavaInterval) {
-      hLavaTimer = 0;
-      spawnHorizontalLavas();
-    }
-    
-    if (dist(x, y, p.x + p.size/2, p.y + p.size/2) < (size/2 + p.size/2))
-      p.takeDamage(20);
-  }
-  
-  void spawnVerticalLavas() {
-    int lavaCount = 5;
-    for (int i = 0; i < lavaCount; i++) {
-      float bx = random(50, width - 50);
-      lavas.add(new LavaV(bx));
+
+    if (m.offscreen()) {
+      meteors.remove(i);
     }
   }
-  
-  void spawnHorizontalLavas() {
-    int lavaCount = 3;
-    for (int i = 0; i < lavaCount; i++) {
-      float by = random(50, height - 50);
-      hLava.add(new LavaH(by));
+
+  // ==== RAIN METEORS ====
+  for (int i = rainMeteors.size()-1; i >= 0; i--) {
+    RainMeteor rm = rainMeteors.get(i);
+    rm.update();
+    rm.display();
+
+    if (rm.hits(player)) {
+      player.takeDamage(8);
+    }
+
+    if (rm.offscreen() || rm.damaged) {
+      rainMeteors.remove(i);
     }
   }
-  
-  void display() {
-    if (!alive) return;
-    fill(255, 0, 0);
-    noStroke();
-    ellipse(x, y, size, size);
+
+  // ==== LAVA WAVES ====
+  for (int i = boss.lavaWaves.size()-1; i >= 0; i--) {
+    LavaWave lw = boss.lavaWaves.get(i);
+    lw.update();
+    lw.display();
+
+    if (lw.hits(player)) {
+      player.takeDamage(10);
+    }
+
+    if (lw.offscreen() || lw.destroyed) {
+      boss.lavaWaves.remove(i);
+    }
   }
-  
-  void takeDamage(int dmg) {
-    health -= dmg;
-    if (health <= 0) alive = false;
+
+  // ==== PLAYER BULLETS ====
+  for (int i = bullets.size()-1; i >= 0; i--) {
+    Bullet b = bullets.get(i);
+    b.update();
+    b.display();
+
+    if (b.offscreen()) {
+      bullets.remove(i);
+    } else if (boss.alive && b.hits(boss)) {
+      boss.takeDamage(2);
+      bullets.remove(i);
+    }
   }
+
+  player.display();
+  boss.display();
+  drawHealthBars();
+
+  if (!player.alive) {
+    fill(255, 50, 50);
+    textAlign(CENTER, CENTER);
+    textSize(48);
+    text("YOU DIED", width/2, height/2);
+    noLoop();
+  }
+
+  if (!boss.alive) {
+    fill(255, 255, 100);
+    textAlign(CENTER, CENTER);
+    textSize(48);
+    text("YOU WIN!", width/2, height/2);
+    noLoop();
+  }
+}
+
+void keyPressed() { player.keyPressed(key); }
+void keyReleased() { player.keyReleased(key); }
+
+void drawHealthBars() {
+  fill(0, 200, 255);
+  rect(20, height - 30, map(player.health, 0, player.maxHealth, 0, 200), 15);
+  noFill(); stroke(255); rect(20, height - 30, 200, 15);
+  noStroke(); fill(255); text("PLAYER", 20, height - 40);
+
+  fill(255, 50, 50);
+  rect(width - 220, 20, map(boss.health, 0, boss.maxHealth, 0, 200), 15);
+  noFill(); stroke(255); rect(width - 220, 20, 200, 15);
+  noStroke(); fill(255); text("Lavar", width - 80, 15);
 }
