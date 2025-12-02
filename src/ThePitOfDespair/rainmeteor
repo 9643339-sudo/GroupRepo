@@ -1,0 +1,45 @@
+class RainMeteor {
+  float x, y;
+  float targetX, targetY;
+  float vx, vy;
+  float speed = 7;
+  float size = 25;
+
+  boolean damaged = false;
+
+  RainMeteor(float startX, float startY, float targetX, float targetY) {
+    this.x = startX;
+    this.y = startY;
+    this.targetX = targetX;
+    this.targetY = targetY;
+
+    float dx = targetX - x;
+    float dy = targetY - y;
+
+    float mag = sqrt(dx*dx + dy*dy);
+    if (mag < 0.0001) mag = 1;
+
+    vx = dx / mag * speed;
+    vy = dy / mag * speed;
+  }
+
+  void update() {
+    x += vx;
+    y += vy;
+  }
+
+  void display() {
+    fill(255, 50, 50);
+    ellipse(x, y, size, size);
+  }
+
+  boolean hits(Player p) {
+    boolean hit = dist(x, y, p.x + p.size/2, p.y + p.size/2) < (size/2 + p.size/2);
+    if (hit) damaged = true;
+    return hit;
+  }
+
+  boolean offscreen() {
+    return x < -50 || x > width + 50 || y < -50 || y > height + 50;
+  }
+}
