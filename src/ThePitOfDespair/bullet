@@ -1,0 +1,13 @@
+// ==== Bullet ====
+class Bullet {
+  PVector pos, vel;
+  float r = 8;
+  Bullet(float sx, float sy) { pos = new PVector(sx, sy); vel = new PVector(0, -8); }
+  void update() { pos.add(vel); }
+  void display() { fill(0, 255, 100); noStroke(); rect(pos.x - r/2, pos.y - r, r, r); }
+  boolean offscreen() { return pos.y < -r; }
+  boolean hits(Boss b) {
+    return (pos.x > b.x - b.size/2 && pos.x < b.x + b.size/2 &&
+            pos.y > b.y - b.size/2 && pos.y < b.y + b.size/2);
+  }
+}
