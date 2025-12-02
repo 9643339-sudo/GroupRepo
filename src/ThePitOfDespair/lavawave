@@ -1,0 +1,41 @@
+class LavaWave {
+  float x, y;
+  float vx;
+  float speed = 4;
+
+  float w = 40;    // skinny width
+  float h = 200;   // tall height
+
+  boolean destroyed = false;  // removed after hitting player
+
+  LavaWave(float startX, float startY, boolean unused) {
+    x = startX;
+    y = startY - h/2;   // center tall hitbox on startY
+
+    if (startX < width/2) vx = speed;   // LEFT → RIGHT
+    else vx = -speed;                    // RIGHT → LEFT
+  }
+
+  void update() {
+    x += vx;
+  }
+
+  void display() {
+    noStroke();
+    fill(255, 120, 0, 200);
+    rect(x, y, w, h);
+  }
+
+  boolean hits(Player p) {
+    boolean hit = (p.x < x + w &&
+                   p.x + p.size > x &&
+                   p.y < y + h &&
+                   p.y + p.size > y);
+    if (hit) destroyed = true;  // disappear on hit
+    return hit;
+  }
+
+  boolean offscreen() {
+    return x < -w - 200 || x > width + 200;
+  }
+}
