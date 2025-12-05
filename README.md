@@ -16,9 +16,7 @@ Will you rise from the fire, or be consumed by it?
 
 ### Gameplay
 
-<img width="482" height="484" alt="Screenshot 2025-11-14 at 9 14 33 AM" src="https://github.com/user-attachments/assets/bd1b1029-88d8-49bc-8b5d-0720811e6b7a" />
-
-<img width="785" height="580" alt="Screenshot 2025-11-11 at 8 46 14 AM" src="https://github.com/user-attachments/assets/a381b6f6-6bbc-44e9-bd80-d7af384c1e88" />
+![reil](https://github.com/9643339-sudo/GroupRepo/blob/main/images/reil.png?raw=true)
 
 
 [Timeline](https://github.com/9643339-sudo/GroupRepo/blob/main/Project%20Timeline)
