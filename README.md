@@ -24,7 +24,7 @@ Will you rise from the fire, or be consumed by it?
 [Timeline](https://github.com/9643339-sudo/GroupRepo/blob/main/Project%20Timeline)
 
 ### How to run
-[God of despair demo](https://github.com/user-attachments/files/23551461/Godofdespair_pde.zip)
+[God of despair demo](https://github.com/9643339-sudo/GroupRepo/blob/main/src/ThePitOfDespair/Godofdespair_pde%202.zip)
 
 
 [Reil Demo](https://github.com/9643339-sudo/GroupRepo/blob/main/src/ThePitOfDespair/ReilBossFightDemo%202.zip)
