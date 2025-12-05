@@ -30,6 +30,9 @@ Will you rise from the fire, or be consumed by it?
 [Reil Demo](https://github.com/user-attachments/files/23481708/ReilBossFightDemo.zip)
 
 
+[Lavar Demo](https://github.com/9643339-sudo/GroupRepo/blob/main/src/ThePitOfDespair/lavarbossdemo)
+
+
 ### Game License
 
 
