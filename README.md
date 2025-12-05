@@ -16,6 +16,8 @@ Will you rise from the fire, or be consumed by it?
 
 ### Gameplay
 
+![lavar](https://github.com/9643339-sudo/GroupRepo/blob/main/images/lavar.png?raw=true)
+
 ![reil](https://github.com/9643339-sudo/GroupRepo/blob/main/images/reil.png?raw=true)
 
 
