@@ -19,7 +19,7 @@ Will you rise from the fire, or be consumed by it?
 ![lavar](https://github.com/9643339-sudo/GroupRepo/blob/main/images/lavar.png?raw=true)
 
 
-![reil](https://github.com/9643339-sudo/GroupRepo/blob/main/images/reil.png?raw=true)
+![reil](https://github.com/9643339-sudo/GroupRepo/blob/main/images/readme.md/Reilphase3.png)
 
 
 ![godofdespair](https://github.com/9643339-sudo/GroupRepo/blob/main/images/god.png?raw=true)
