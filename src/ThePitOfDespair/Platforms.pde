@@ -31,7 +31,7 @@ void setup() {
 }
 
 void draw() {
-  background(127);
+  background(139,0,0);
 
   // Smooth camera following player upward
   float targetCamY = fred.y - height/2;
