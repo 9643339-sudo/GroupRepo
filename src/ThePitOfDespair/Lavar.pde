@@ -1,3 +1,4 @@
+//made by alex elkin
 class Boss {
   float x, y;
   float size = 120;               // hitbox size
