@@ -1,3 +1,4 @@
+//Hunter Westover Dec 9 2025
 SquareMan fred;
 ArrayList<Platform> platforms;
 
