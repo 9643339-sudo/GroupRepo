@@ -3,8 +3,8 @@ class LavaWave {
   float vx;
   float speed = 4;
 
-  float w = 40;    // skinny width
-  float h = 200;   // tall height
+  float w = 40;    //  width
+  float h = 200;   //  height
 
   boolean destroyed = false;  // removed after hitting player
 
@@ -12,8 +12,8 @@ class LavaWave {
     x = startX;
     y = startY - h/2;   // center tall hitbox on startY
 
-    if (startX < width/2) vx = speed;   // LEFT → RIGHT
-    else vx = -speed;                    // RIGHT → LEFT
+    if (startX < width/2) vx = speed;   // STart on left
+    else vx = -speed;                    // start on right
   }
 
   void update() {
@@ -28,9 +28,9 @@ class LavaWave {
 
   boolean hits(Player p) {
     boolean hit = (p.x < x + w &&
-                   p.x + p.size > x &&
-                   p.y < y + h &&
-                   p.y + p.size > y);
+      p.x + p.size > x &&
+      p.y < y + h &&
+      p.y + p.size > y);
     if (hit) destroyed = true;  // disappear on hit
     return hit;
   }
