@@ -12,9 +12,11 @@ float platformSpacing = 80;
 // Input
 boolean moveLeft = false;
 boolean moveRight = false;
+PImage Lava;
 
 void setup() {
   size(500, 500);
+  Lava = loadImage("Lava.png");
 
   fred = new SquareMan(width/2, 100, color(0, 0, 255));
 
@@ -31,7 +33,10 @@ void setup() {
 }
 
 void draw() {
-  background(139,0,0);
+  background(130,10,0);
+  image(Lava, 150, 310, 800, 500);
+  imageMode(CENTER);
+
 
   // Smooth camera following player upward
   float targetCamY = fred.y - height/2;
